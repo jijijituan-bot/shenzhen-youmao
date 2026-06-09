@@ -116,7 +116,7 @@ function renderProducts(page) {
         const productCard = `
             <div class="product-item">
                 <div class="product-image-wrap">
-                    <img src="${product.image}" alt="${product.name}" class="product-img">
+                    <img src="${product.image}" alt="${product.name}" class="product-img" onclick="openLightbox(this)">
                 </div>
                 <div class="product-details">
                     <h3 class="product-name">${product.name}</h3>
@@ -189,5 +189,35 @@ document.addEventListener('DOMContentLoaded', () => {
             renderProducts(currentPage + 1);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+    });
+});
+
+// 灯箱功能
+function openLightbox(img) {
+    const overlay = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 点击遮罩关闭
+    document.getElementById('lightbox').addEventListener('click', (e) => {
+        if (e.target !== document.getElementById('lightboxImg')) {
+            closeLightbox();
+        }
+    });
+    // 关闭按钮
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    // ESC 键关闭
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
     });
 });
