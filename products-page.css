@@ -1,0 +1,191 @@
+/* 产品页面样式 */
+.products-page-section {
+    padding: 120px 0 80px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.page-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #003366;
+    margin-bottom: 15px;
+}
+
+.page-subtitle {
+    font-size: 20px;
+    color: #666;
+}
+
+.products-grid-page {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.product-item {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.product-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 51, 102, 0.2);
+}
+
+.product-image-placeholder {
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.product-details {
+    padding: 25px;
+}
+
+.product-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #003366;
+    margin-bottom: 15px;
+}
+
+.product-specs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.product-specs li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.product-specs li:last-child {
+    border-bottom: none;
+}
+
+.spec-label {
+    color: #666;
+    font-weight: 500;
+}
+
+.spec-value {
+    color: #003366;
+    font-weight: 600;
+}
+
+/* 分页导航 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.pagination-btn {
+    padding: 12px 24px;
+    background: #003366;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background: #0066cc;
+    transform: translateY(-2px);
+}
+
+.pagination-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.pagination-numbers {
+    display: flex;
+    gap: 10px;
+}
+
+.page-number {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #003366;
+    background: white;
+    color: #003366;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.page-number:hover {
+    background: #003366;
+    color: white;
+}
+
+.page-number.active {
+    background: #003366;
+    color: white;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .products-grid-page {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .products-page-section {
+        padding: 100px 0 60px;
+    }
+
+    .page-title {
+        font-size: 36px;
+    }
+
+    .page-subtitle {
+        font-size: 18px;
+    }
+
+    .products-grid-page {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+    }
+
+    .pagination-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
