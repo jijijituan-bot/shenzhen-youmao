@@ -886,11 +886,11 @@ html {
     top: 0 !important;
 }
 
-/* 调整照片位置向下移动，增加宽度 */
+/* 调整照片位置，与文字并排 */
 .advantages-background {
-    top: 200px !important;
-    width: 120% !important;
-    left: -10% !important;
+    top: 0 !important;
+    width: 100% !important;
+    left: 0 !important;
     height: 600px !important;
 }
 

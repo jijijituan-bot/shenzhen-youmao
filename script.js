@@ -323,7 +323,7 @@ const initParallax = () => {
         const applicationsBottom = applicationsTop + applicationsHeight;
         
         const showcaseHeight = 400; // 与 CSS 中的高度一致
-        const initialOffset = 200; // 初始向下偏移
+        const initialOffset = 0; // 初始向下偏移
         
         // 当滚动超过应用领域底部时，照片向上移动隐藏
         if (scrollTop >= applicationsBottom) {
