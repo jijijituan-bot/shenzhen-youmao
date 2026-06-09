@@ -323,16 +323,17 @@ const initParallax = () => {
         const applicationsBottom = applicationsTop + applicationsHeight;
         
         const showcaseHeight = 400; // 与 CSS 中的高度一致
+        const initialOffset = 50; // 初始向下偏移
         
         // 当滚动超过应用领域底部时，照片向上移动隐藏
         if (scrollTop >= applicationsBottom) {
             // 计算照片应该移动的距离（向上）
             const moveDistance = Math.min(
                 scrollTop - applicationsBottom,
-                showcaseHeight
+                showcaseHeight + initialOffset
             );
             
-            // 更新照片容器的位置：从 0 向上移动 moveDistance
+            // 更新照片容器的位置：从初始偏移向上移动 moveDistance
             advantagesBg.style.transform = `translateY(-${moveDistance}px)`;
         } else {
             // 还未滚动到应用领域底部，照片保持原位

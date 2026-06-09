@@ -885,3 +885,8 @@ html {
 .advantages-background {
     top: 0 !important;
 }
+
+/* 调整照片位置向下移动 */
+.advantages-background {
+    top: 50px !important;
+}
