@@ -817,3 +817,23 @@ section {
 html {
     scroll-behavior: smooth;
 }
+
+/* 应用领域 - 两行各三列 */
+.applications-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .applications-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .applications-grid {
+        grid-template-columns: 1fr;
+    }
+}
