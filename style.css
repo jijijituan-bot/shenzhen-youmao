@@ -886,7 +886,16 @@ html {
     top: 0 !important;
 }
 
-/* 调整照片位置向下移动 */
+/* 调整照片位置向下移动，增加宽度 */
 .advantages-background {
     top: 200px !important;
+    width: 120% !important;
+    left: -10% !important;
+    height: 600px !important;
+}
+
+
+/* 确保背景图在企业优势内容下方 */
+.advantages-background {
+    z-index: 0 !important;
 }
