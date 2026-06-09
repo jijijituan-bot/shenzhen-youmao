@@ -308,41 +308,41 @@ document.addEventListener('keydown', (e) => {
 
 // 企业优势区域视差滚动效果
 const initParallax = () => {
+    const showcaseContainer = document.getElementById('showcaseImage');
     const advantagesSection = document.querySelector('.advantages-section');
-    if (!advantagesSection) return;
+    
+    if (!showcaseContainer || !advantagesSection) return;
     
     window.addEventListener('scroll', () => {
-        const sectionTop = advantagesSection.offsetTop;
-        const sectionHeight = advantagesSection.clientHeight;
-        const windowHeight = window.innerHeight;
         const scrollTop = window.pageYOffset;
         
-        // 应用领域在窗口顶部时的 Y 坐标
+        // 应用领域和企业优势的位置
         const applicationsSection = document.querySelector('#applications');
         const applicationsTop = applicationsSection ? applicationsSection.offsetTop : 0;
         const applicationsHeight = applicationsSection ? applicationsSection.clientHeight : 0;
+        const applicationsBottom = applicationsTop + applicationsHeight;
         
-        // 当优势区域完全进入视口时（企业优势顶部到达窗口顶部）
-        // 背景图开始从应用领域下方向上滑动
+        const advantagesTop = advantagesSection.offsetTop;
+        const windowHeight = window.innerHeight;
         
-        const advantagesStart = sectionTop;
-        const parallaxDistance = windowHeight + sectionHeight;
-        
-        if (scrollTop >= advantagesStart - windowHeight) {
-            // 计算背景图应该显示的位置
-            // 从应用领域底部开始，逐渐向上移动
-            const relativeScroll = scrollTop - (applicationsTop + applicationsHeight);
-            const yOffset = Math.max(0, relativeScroll * 0.6); // 0.6 为视差系数，可调
+        // 当企业优势区域进入视口时，开始移动照片
+        if (scrollTop >= applicationsBottom) {
+            // 计算照片应该移动的距离
+            // 当用户滚动到企业优势时，照片逐渐向上移动并隐藏
+            const moveDistance = Math.min(
+                scrollTop - applicationsBottom,
+                showcaseContainer.clientHeight + 100
+            );
             
-            advantagesSection.style.backgroundPosition = `center ${-yOffset}px`;
-        }
-        
-        // 控制覆盖层透明度：照片滑动过程中逐渐透明
-        const overlay = advantagesSection.querySelector('.advantages-overlay');
-        if (overlay) {
-            const progress = (scrollTop - advantagesStart + windowHeight) / (windowHeight + sectionHeight);
-            const opacity = Math.max(0.7, 1 - (progress * 0.4));
-            overlay.style.opacity = opacity;
+            // 透明度：随着上移，逐渐变透明
+            const opacity = Math.max(0, 1 - (moveDistance / showcaseContainer.clientHeight));
+            
+            showcaseContainer.style.transform = `translateY(-${moveDistance}px)`;
+            showcaseContainer.style.opacity = opacity;
+        } else {
+            // 还未滚动到，照片保持原位
+            showcaseContainer.style.transform = 'translateY(0)';
+            showcaseContainer.style.opacity = '1';
         }
     });
 };
