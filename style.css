@@ -842,8 +842,9 @@ html {
 /* 企业优势 - 视差背景 */
 .advantages-section {
     background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background-position: center 0;
+    background-attachment: scroll;
+    background-repeat: no-repeat;
     position: relative;
     padding: 80px 0 !important;
 }

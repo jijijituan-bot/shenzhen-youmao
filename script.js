@@ -311,30 +311,38 @@ const initParallax = () => {
     const advantagesSection = document.querySelector('.advantages-section');
     if (!advantagesSection) return;
     
-    const parallaxBg = advantagesSection.style.backgroundImage;
-    
     window.addEventListener('scroll', () => {
-        const sectionRect = advantagesSection.getBoundingClientRect();
-        const sectionTop = sectionRect.top;
-        const sectionHeight = sectionRect.height;
+        const sectionTop = advantagesSection.offsetTop;
+        const sectionHeight = advantagesSection.clientHeight;
         const windowHeight = window.innerHeight;
+        const scrollTop = window.pageYOffset;
         
-        // 计算视差偏移
-        // 当应用领域完全显示时（即企业优势开始进入视口时），背景开始向上移动
-        const scrollProgress = (windowHeight - sectionTop) / (windowHeight + sectionHeight);
+        // 应用领域在窗口顶部时的 Y 坐标
+        const applicationsSection = document.querySelector('#applications');
+        const applicationsTop = applicationsSection ? applicationsSection.offsetTop : 0;
+        const applicationsHeight = applicationsSection ? applicationsSection.clientHeight : 0;
         
-        // 限制在 0-1 之间
-        const progress = Math.max(0, Math.min(1, scrollProgress));
+        // 当优势区域完全进入视口时（企业优势顶部到达窗口顶部）
+        // 背景图开始从应用领域下方向上滑动
         
-        // 背景位置：从 0% 移动到 -30%
-        const yOffset = progress * 30;
+        const advantagesStart = sectionTop;
+        const parallaxDistance = windowHeight + sectionHeight;
         
-        advantagesSection.style.backgroundPosition = `center ${yOffset}%`;
+        if (scrollTop >= advantagesStart - windowHeight) {
+            // 计算背景图应该显示的位置
+            // 从应用领域底部开始，逐渐向上移动
+            const relativeScroll = scrollTop - (applicationsTop + applicationsHeight);
+            const yOffset = Math.max(0, relativeScroll * 0.6); // 0.6 为视差系数，可调
+            
+            advantagesSection.style.backgroundPosition = `center ${-yOffset}px`;
+        }
         
-        // 控制覆盖层透明度：随着向下滚动，覆盖层变得越来越透明
+        // 控制覆盖层透明度：照片滑动过程中逐渐透明
         const overlay = advantagesSection.querySelector('.advantages-overlay');
         if (overlay) {
-            overlay.style.opacity = 1 - (progress * 0.3);
+            const progress = (scrollTop - advantagesStart + windowHeight) / (windowHeight + sectionHeight);
+            const opacity = Math.max(0.7, 1 - (progress * 0.4));
+            overlay.style.opacity = opacity;
         }
     });
 };
