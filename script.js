@@ -324,19 +324,19 @@ const initParallax = () => {
         
         const showcaseHeight = 400; // 与 CSS 中的高度一致
         
-        // 当滚动超过应用领域底部时，照片开始从企业优势下方向上移动
+        // 当滚动超过应用领域底部时，照片向上移动隐藏
         if (scrollTop >= applicationsBottom) {
-            // 计算照片应该显示的距离
+            // 计算照片应该移动的距离（向上）
             const moveDistance = Math.min(
                 scrollTop - applicationsBottom,
                 showcaseHeight
             );
             
-            // 更新照片容器的位置：从 -showcaseHeight 向上移动
-            advantagesBg.style.top = `${-showcaseHeight + moveDistance}px`;
+            // 更新照片容器的位置：从 0 向上移动 moveDistance
+            advantagesBg.style.transform = `translateY(-${moveDistance}px)`;
         } else {
-            // 还未滚动到应用领域底部，照片保持在企业优势下方
-            advantagesBg.style.top = `-${showcaseHeight}px`;
+            // 还未滚动到应用领域底部，照片保持原位
+            advantagesBg.style.transform = 'translateY(0)';
         }
     });
 };

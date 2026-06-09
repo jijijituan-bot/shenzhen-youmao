@@ -881,3 +881,7 @@ html {
 .advantages-overlay {
     display: none;
 }
+/* 覆盖重复规则 */
+.advantages-background {
+    top: 0 !important;
+}
