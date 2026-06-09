@@ -304,3 +304,44 @@ document.addEventListener('keydown', (e) => {
         body.style.overflow = '';
     }
 });
+
+
+// 企业优势区域视差滚动效果
+const initParallax = () => {
+    const advantagesSection = document.querySelector('.advantages-section');
+    if (!advantagesSection) return;
+    
+    const parallaxBg = advantagesSection.style.backgroundImage;
+    
+    window.addEventListener('scroll', () => {
+        const sectionRect = advantagesSection.getBoundingClientRect();
+        const sectionTop = sectionRect.top;
+        const sectionHeight = sectionRect.height;
+        const windowHeight = window.innerHeight;
+        
+        // 计算视差偏移
+        // 当应用领域完全显示时（即企业优势开始进入视口时），背景开始向上移动
+        const scrollProgress = (windowHeight - sectionTop) / (windowHeight + sectionHeight);
+        
+        // 限制在 0-1 之间
+        const progress = Math.max(0, Math.min(1, scrollProgress));
+        
+        // 背景位置：从 0% 移动到 -30%
+        const yOffset = progress * 30;
+        
+        advantagesSection.style.backgroundPosition = `center ${yOffset}%`;
+        
+        // 控制覆盖层透明度：随着向下滚动，覆盖层变得越来越透明
+        const overlay = advantagesSection.querySelector('.advantages-overlay');
+        if (overlay) {
+            overlay.style.opacity = 1 - (progress * 0.3);
+        }
+    });
+};
+
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', () => {
+    initHeroSlider();
+    observeElements();
+    initParallax();
+});
