@@ -308,10 +308,11 @@ document.addEventListener('keydown', (e) => {
 
 // 企业优势区域视差滚动效果
 const initParallax = () => {
-    const showcaseContainer = document.getElementById('showcaseImage');
+    const applicationShowcase = document.getElementById('showcaseImage');
     const advantagesSection = document.querySelector('.advantages-section');
+    const advantagesBg = document.querySelector('.advantages-background');
     
-    if (!showcaseContainer || !advantagesSection) return;
+    if (!applicationShowcase || !advantagesSection || !advantagesBg) return;
     
     window.addEventListener('scroll', () => {
         const scrollTop = window.pageYOffset;
@@ -323,26 +324,21 @@ const initParallax = () => {
         const applicationsBottom = applicationsTop + applicationsHeight;
         
         const advantagesTop = advantagesSection.offsetTop;
-        const windowHeight = window.innerHeight;
+        const showcaseHeight = applicationShowcase.clientHeight;
         
-        // 当企业优势区域进入视口时，开始移动照片
+        // 当滚动超过应用领域底部时，照片开始从企业优势下方向上移动
         if (scrollTop >= applicationsBottom) {
-            // 计算照片应该移动的距离
-            // 当用户滚动到企业优势时，照片逐渐向上移动并隐藏
+            // 计算照片应该显示的距离
             const moveDistance = Math.min(
                 scrollTop - applicationsBottom,
-                showcaseContainer.clientHeight + 100
+                showcaseHeight
             );
             
-            // 透明度：随着上移，逐渐变透明
-            const opacity = Math.max(0, 1 - (moveDistance / showcaseContainer.clientHeight));
-            
-            showcaseContainer.style.transform = `translateY(-${moveDistance}px)`;
-            showcaseContainer.style.opacity = opacity;
+            // 更新照片容器的位置：从 -showcaseHeight 向上移动
+            advantagesBg.style.top = `${-showcaseHeight + moveDistance}px`;
         } else {
-            // 还未滚动到，照片保持原位
-            showcaseContainer.style.transform = 'translateY(0)';
-            showcaseContainer.style.opacity = '1';
+            // 还未滚动到应用领域底部，照片保持在企业优势下方
+            advantagesBg.style.top = `-${showcaseHeight}px`;
         }
     });
 };
