@@ -2,6 +2,7 @@
 const products = [
     {
         name: "BL4850",
+        image: "https://i.ibb.co/W4rKLhWp/1ee36e7fbb30.png",
         voltage: "12.0V-48.0V",
         diameter: "φ48",
         length: "50mm",
@@ -9,13 +10,15 @@ const products = [
     },
     {
         name: "BL3060",
+        image: "https://i.ibb.co/JRGBh9RQ/89a3138f5188.png",
         voltage: "6.0V-24.0V",
         diameter: "φ30",
         length: "60mm",
         shape: "圆型铁壳"
     },
     {
-        name: "BL5OF32",
+        name: "BL50F32",
+        image: "https://i.ibb.co/VWkH710K/6e65201e4716.png",
         voltage: "18.0V-43.2V",
         diameter: "φ50",
         length: "32mm",
@@ -23,6 +26,7 @@ const products = [
     },
     {
         name: "BL48F20",
+        image: "https://i.ibb.co/1f40SPrn/2518c1aaef1d.png",
         voltage: "12.0V-24.0V",
         diameter: "φ47.3",
         length: "52mm",
@@ -30,6 +34,7 @@ const products = [
     },
     {
         name: "BLDC5032",
+        image: "https://i.ibb.co/NdkMbWFk/0d31d7fd1055.jpg",
         voltage: "18.0V-43.2V",
         diameter: "φ50",
         length: "32mm",
@@ -37,6 +42,7 @@ const products = [
     },
     {
         name: "BL50F25",
+        image: "https://i.ibb.co/nNQJTZVX/7fbdadff228c.jpg",
         voltage: "18.0V-21.6V",
         diameter: "φ50",
         length: "25mm",
@@ -44,6 +50,7 @@ const products = [
     },
     {
         name: "BL48F25",
+        image: "https://i.ibb.co/Zzk2kgwQ/1b8b0b682c1b.jpg",
         voltage: "14.4V-21.6V",
         diameter: "φ48",
         length: "25mm",
@@ -51,6 +58,7 @@ const products = [
     },
     {
         name: "BL48F23",
+        image: "https://i.ibb.co/v4R1W4M5/106f08be0a62.jpg",
         voltage: "14.4V-21.6V",
         diameter: "φ48",
         length: "23mm",
@@ -58,6 +66,7 @@ const products = [
     },
     {
         name: "BL48F15",
+        image: "https://i.ibb.co/N2LnSw9r/0cafdc65c272.jpg",
         voltage: "14.4V-21.6V",
         diameter: "φ48",
         length: "15mm",
@@ -65,6 +74,7 @@ const products = [
     },
     {
         name: "BL40E16",
+        image: "https://i.ibb.co/XhWrCcY/2b9157917fa3.jpg",
         voltage: "80V-144VAC/176-264VAC",
         diameter: "φ40",
         length: "45mm",
@@ -72,6 +82,7 @@ const products = [
     },
     {
         name: "BL3657S",
+        image: "https://i.ibb.co/N2QKVdYY/486b772ae577.jpg",
         voltage: "7.0V-36.0V",
         diameter: "φ36",
         length: "57mm",
@@ -79,6 +90,7 @@ const products = [
     },
     {
         name: "BL2838S",
+        image: "https://i.ibb.co/4wm8sxZL/7ec8ec8c6147.jpg",
         voltage: "7.0V-24.0V",
         diameter: "φ27.7",
         length: "37.5mm",
@@ -103,8 +115,8 @@ function renderProducts(page) {
     pageProducts.forEach(product => {
         const productCard = `
             <div class="product-item">
-                <div class="product-image-placeholder">
-                    ${product.name}
+                <div class="product-image-wrap">
+                    <img src="${product.image}" alt="${product.name}" class="product-img">
                 </div>
                 <div class="product-details">
                     <h3 class="product-name">${product.name}</h3>
