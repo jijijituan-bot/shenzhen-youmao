@@ -308,11 +308,10 @@ document.addEventListener('keydown', (e) => {
 
 // 企业优势区域视差滚动效果
 const initParallax = () => {
-    const applicationShowcase = document.getElementById('showcaseImage');
     const advantagesSection = document.querySelector('.advantages-section');
     const advantagesBg = document.querySelector('.advantages-background');
     
-    if (!applicationShowcase || !advantagesSection || !advantagesBg) return;
+    if (!advantagesSection || !advantagesBg) return;
     
     window.addEventListener('scroll', () => {
         const scrollTop = window.pageYOffset;
@@ -323,8 +322,7 @@ const initParallax = () => {
         const applicationsHeight = applicationsSection ? applicationsSection.clientHeight : 0;
         const applicationsBottom = applicationsTop + applicationsHeight;
         
-        const advantagesTop = advantagesSection.offsetTop;
-        const showcaseHeight = applicationShowcase.clientHeight;
+        const showcaseHeight = 400; // 与 CSS 中的高度一致
         
         // 当滚动超过应用领域底部时，照片开始从企业优势下方向上移动
         if (scrollTop >= applicationsBottom) {

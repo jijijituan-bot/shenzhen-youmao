@@ -839,22 +839,6 @@ html {
 }
 
 
-/* 应用场景展示图 - 可动画元素 */
-.application-showcase-fullwidth {
-    width: 100%;
-    height: 400px;
-    overflow: hidden;
-    position: relative;
-    background: #f0f0f0;
-}
-
-.showcase-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
 /* 企业优势 - 正常背景 */
 .advantages-section {
     background: #ffffff;
